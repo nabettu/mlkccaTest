@@ -1,29 +1,23 @@
 var milkcocoa = new MilkCocoa("https://io-oi8qondb6.mlkcca.com/");
-var chatDataStore = milkcocoa.dataStore("chat");
-var textArea, board;
+var potisionDataStore = milkcocoa.dataStore("position");
+var positionX = window.innerWidth/2;
+var positionY = window.innerHeight/2;
+console.log(window);
+
 window.onload = function(){
-  textArea = document.getElementById("msg");
-  board = document.getElementById("board");
+  $("#unit")[0].style.top = positionY+"px";
+  $("#unit")[0].style.left = positionX+"px";
 }
 
-function clickEvent(){
-  var text = textArea.value;
-  sendText(text);
-}
-
-function sendText(text){
-  chatDataStore.push({message : text},function(data){
-    console.log("送信完了!");
-    textArea.value = "";
+function sendControl(valueX,valueY){
+  potisionDataStore.push({positionX : valueX,positionY : valueY},function(data){
+    console.log("milkcocoa送信完了!");
   });
 }
 
-chatDataStore.on("push",function(data){
-  addText(data.value.message);
+potisionDataStore.on("push",function(data){
+  positionY = positionY+data.value.positionY;
+  positionX = positionX+data.value.positionX;
+  $("#unit")[0].style.top = positionY+"px";
+  $("#unit")[0].style.left = positionX+"px";
 });
-
-function addText(text){
-  var msgDom = document.createElement("li");
-  msgDom.innerHTML = text;
-  board.insertBefore(msgDom, board.firstChild);
-}
