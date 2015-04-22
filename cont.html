@@ -33,6 +33,11 @@ span {
   border-radius: 50%;
   text-align: center;
   vertical-align: middle;
+
+  user-select: none; /* CSS3 */
+  -moz-user-select: none; /* Firefox */
+  -webkit-user-select: none; /* Safari、Chromeなど */ 
+  -ms-user-select: none; /* IE10かららしい */
 }
 
 #left {
@@ -40,7 +45,7 @@ span {
   box-shadow: 5px 10px #550000;
 }
 
-#left:active {
+#left.tch-active,#left:active {
   top:10px;
   left:5px;
   box-shadow: none;
@@ -52,7 +57,7 @@ span {
   box-shadow: 5px 10px #000055;
 }
 
-#right:active {
+#right.tch-active,#right:active {
   top:10px;
   left:225px;
   box-shadow: none;
@@ -66,12 +71,6 @@ var milkcocoa = new MilkCocoa("https://io-oi8qondb6.mlkcca.com/");
 var potisionDataStore = milkcocoa.dataStore("position");
 var token = "";
 
-function sendControl(value){
-  potisionDataStore.push({mv: value, token : token},function(data){
-    console.log("milkcocoa送信完了!");
-  });
-}
-
 //URLのtokenを同期用にセットする
 window.onload = function(){
   token = getQueryString().token;
@@ -80,6 +79,20 @@ window.onload = function(){
   //接続確認を送る
   sendControl(0);
 }
+
+function sendControl(value){
+  potisionDataStore.push({mv: value, token : token},function(data){
+    console.log("milkcocoa送信完了!");
+  });
+}
+
+var $elm = $("span");
+$elm.bind('touchstart', function() {
+    $(this).addClass('tch-active');
+});
+$elm.bind('touchend', function() {
+    $(this).removeClass('tch-active');
+});
 
 //URLの文字列を取得
 function getQueryString(){
