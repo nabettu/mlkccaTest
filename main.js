@@ -4,6 +4,9 @@ var positionX = window.innerWidth/2;
 var positionY = window.innerHeight/2;
 console.log(window);
 
+var length = 8
+var token = Math.random().toString(36).slice(-length);
+
 window.onload = function(){
   $("#unit")[0].style.top = positionY+"px";
   $("#unit")[0].style.left = positionX+"px";
@@ -15,9 +18,15 @@ function sendControl(valueX,valueY){
   });
 }
 
+function openwin() {
+  window.open("./cont.html?token="+token, "", "width=400,height=200,status=no,location=no,toolbar=no,menubar=no");
+  $("#openWin").hide();
+}
+
 potisionDataStore.on("push",function(data){
-  positionY = positionY+data.value.positionY;
-  positionX = positionX+data.value.positionX;
-  $("#unit")[0].style.top = positionY+"px";
-  $("#unit")[0].style.left = positionX+"px";
+  console.log(data);
+  if(data.value.token == token){
+    positionX = positionX+data.value.mv;
+    $("#unit")[0].style.left = positionX+"px";
+  }
 });
