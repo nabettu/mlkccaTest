@@ -1,6 +1,6 @@
 var milkcocoa = new MilkCocoa("https://io-oi8qondb6.mlkcca.com/");
 var potisionDataStore = milkcocoa.dataStore("position");
-var positionX = 150;
+var positionX = 100;
 //アクセスユーザー固有のtokenを作成する
 var token = Math.random().toString(36).slice(-8);
 
