@@ -14,7 +14,7 @@ window.onload = function(){
   $('#qc').qrcode({
          width:100,                               //QRコードの幅
          height:100,                              //QRコードの高さ 
-         text:"./cont.html?token="+token          //QRコードの内容
+         text:"http://nabettu.github.io/mlkccaTest/cont.html?token="+token          //QRコードの内容
      });
 }
 
