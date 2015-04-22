@@ -25,14 +25,13 @@ function sendControl(valueX,valueY){
 }
 
 function openwin() {
-  window.open("http://nabettu.github.io/mlkccaTest/cont.html?token="+token, "", "width=400,height=200,status=no,location=no,toolbar=no,menubar=no");
+  window.open("./cont.html?token="+token, "", "width=400,height=200,status=no,location=no,toolbar=no,menubar=no");
 }
 
 potisionDataStore.on("push",function(data){
   console.log(data);
   if(data.value.token == token){
-    $("#openWin").hide();    
-    $("#qc").hide();    
+    $("#openWin").hide();
     positionX = positionX+data.value.mv;
     $("#unit")[0].style.left = positionX+"px";
   }

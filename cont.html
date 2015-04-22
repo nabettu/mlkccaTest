@@ -9,8 +9,38 @@
 </head>
 <body>
 
-<div id="left" onclick="sendControl(10);"><-</div>
-<div id="right" onclick="sendControl(-10);">-></div>
+<div id="left" onclick="sendControl(-10);">←</div>
+<div id="right" onclick="sendControl(10);">→</div>
+
+
+<style type="text/css">
+<!--
+
+html,body {
+  height:100%;
+  width:100%;
+  margin: 0;
+}
+div {
+  width: 49%;
+  height: 55%;
+  display: inline-block;
+  text-align: center;
+  font-size: 100px;
+  padding-top: 40%;
+}
+
+#left {
+  background-color: #FF6666;
+}
+
+#right {
+  background-color: #6666FF;
+}
+
+//-->
+</style>
+
 
 <script type="text/javascript">
 var milkcocoa = new MilkCocoa("https://io-oi8qondb6.mlkcca.com/");
@@ -48,7 +78,5 @@ function getQueryString(){
     return result;
 }
 </script> 
-
-
 </body>
 </html>
