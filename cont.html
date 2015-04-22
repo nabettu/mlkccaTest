@@ -27,6 +27,9 @@ function sendControl(value){
 window.onload = function(){
   token = getQueryString().token;
   console.log(getQueryString().token);
+
+  //接続確認を送る
+  sendControl(0);
 }
 
 //URLの文字列を取得

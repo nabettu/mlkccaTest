@@ -4,12 +4,18 @@ var positionX = window.innerWidth/2;
 var positionY = window.innerHeight/2;
 console.log(window);
 
-var length = 8
-var token = Math.random().toString(36).slice(-length);
+//アクセスユーザー固有のtokenを作成する
+var token = Math.random().toString(36).slice(-8);
 
 window.onload = function(){
   $("#unit")[0].style.top = positionY+"px";
   $("#unit")[0].style.left = positionX+"px";
+  
+  $('#qc').qrcode({
+         width:100,                               //QRコードの幅
+         height:100,                              //QRコードの高さ 
+         text:"./cont.html?token="+token          //QRコードの内容
+     });
 }
 
 function sendControl(valueX,valueY){
@@ -19,13 +25,14 @@ function sendControl(valueX,valueY){
 }
 
 function openwin() {
-  window.open("./cont.html?token="+token, "", "width=400,height=200,status=no,location=no,toolbar=no,menubar=no");
-  $("#openWin").hide();
+  window.open("http://nabettu.github.io/mlkccaTest/cont.html?token="+token, "", "width=400,height=200,status=no,location=no,toolbar=no,menubar=no");
 }
 
 potisionDataStore.on("push",function(data){
   console.log(data);
   if(data.value.token == token){
+    $("#openWin").hide();    
+    $("#qc").hide();    
     positionX = positionX+data.value.mv;
     $("#unit")[0].style.left = positionX+"px";
   }
