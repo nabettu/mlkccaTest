@@ -25,14 +25,14 @@ function sendControl(valueX,valueY){
 }
 
 function openwin() {
-  window.open("./cont.html?token="+token, "", "width=400,height=200,status=no,location=no,toolbar=no,menubar=no");
+  window.open("./cont.html?token="+token, "", "width=450,height=220,status=no,location=no,toolbar=no,menubar=no");
 }
 
 potisionDataStore.on("push",function(data){
   console.log(data);
   if(data.value.token == token){
     $("#openWin").hide();
-    positionX = positionX+data.value.mv;
+    positionX = positionX+data.value.mv*100;
     $("#unit")[0].style.left = positionX+"px";
   }
 });
