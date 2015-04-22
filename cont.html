@@ -25,6 +25,7 @@ html,body {
   padding:0;
 }
 span {
+  position: absolute;
   width: 200px;
   height: 200px;
   display: inline-block;
@@ -37,12 +38,26 @@ span {
 
 #left {
   background-color: #FF6666;
+  box-shadow: 5px 10px #550000;
+}
+
+#left:active {
+  top:10px;
+  left:5px;
+  box-shadow: none;
 }
 
 #right {
+  left:220px;
   background-color: #6666FF;
+  box-shadow: 5px 10px #000055;
 }
 
+#right:active {
+  top:10px;
+  left:225px;
+  box-shadow: none;
+}
 //-->
 </style>
 
